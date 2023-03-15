@@ -15,6 +15,9 @@ push.onclick = function () {
                 </li>
                 
         `;
+
+    document.querySelector("#app__add .app__input").value = "";
+
     var current_tasks = document.querySelectorAll(".post__delete");
     for (var i = 0; i < current_tasks.length; i++) {
       current_tasks[i].onclick = function () {
@@ -22,24 +25,25 @@ push.onclick = function () {
       };
     }
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach((checkbox) => {
+    checkboxes.forEach((checkbox, index) => {
       checkbox.addEventListener("click", function () {
         const listItem = checkbox.parentElement;
+
         if (checkbox.checked) {
           listItem.classList.add("completed");
-
           document.querySelector("#completed").innerHTML += `
                 <li class="post">
-                    <input type="checkbox" id="task-1" checked>
-                    <label for="task-1" id="post__name">${
-                      document.querySelector("#app__add .app__input").value
-                    }</label>
+                    <input type="checkbox" id="task-1" checked disabled="disabled">
+                    <label for="task-1">${
+                      listItem.querySelector("label").textContent
+                    }</label>   
                     <button class="post__delete">x</button>
                 </li>
         `;
           var current_tasks = document.querySelectorAll(".post__delete");
           for (var i = 0; i < current_tasks.length; i++) {
             current_tasks[i].onclick = function () {
+              listItem.remove();
               this.parentNode.remove();
             };
           }

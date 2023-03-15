@@ -6,6 +6,9 @@ body,
   justify-content: center;
   align-items: center;
 }
+li {
+  list-style: none;
+}
 h2 {
   text-align: center;
 }
@@ -67,6 +70,7 @@ h2 {
 .completed {
   color: red;
   text-decoration: line-through;
+  display: none;
 }
 #app__add {
   flex-direction: column;
@@ -92,4 +96,7 @@ h2 {
 .tabcontent {
   display: none;
   padding: 0 10px;
+}
+.completed__checkbox {
+  background-color: aqua;
 }
