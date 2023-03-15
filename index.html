@@ -10,13 +10,36 @@
   <body>
     <div class="app">
       <div class="container">
+        <div></div>
         <div class="app__container">
-          <h2>ADD WORKS</h2>
+          <h2>WORKS</h2>
           <div class="app__posts">
-            <ul id="posts">
-              Mopping
-            </ul>
-            <div id="app__add">
+            <div class="app__button">
+              <button
+                id="btn__1 "
+                class="btn tablink"
+                onclick="openTab(event, 'app__add')"
+              >
+                ADD WORKS
+              </button>
+              <button
+                id="btn__2 "
+                class="btn tablink"
+                onclick="openTab(event, 'posts')"
+              >
+                LISTS WORKS
+              </button>
+              <button
+                id="btn__3 "
+                class="btn tablink"
+                onclick="openTab(event, 'completed')"
+              >
+                WORKS COMPLETED
+              </button>
+            </div>
+            <ul id="posts" class="tabcontent"></ul>
+            <ul id="completed" class="tabcontent"></ul>
+            <div id="app__add" class="tabcontent show">
               <input type="text" placeholder="Add work..." class="app__input" />
               <button class="app__btn"><span class="app__icon">+</span></button>
             </div>

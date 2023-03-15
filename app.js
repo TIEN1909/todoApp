@@ -15,33 +15,53 @@ push.onclick = function () {
                 </li>
                 
         `;
-
     var current_tasks = document.querySelectorAll(".post__delete");
     for (var i = 0; i < current_tasks.length; i++) {
-      //   console.log("id", i);
       current_tasks[i].onclick = function () {
-        // loại bỏ phần tử cha khi nhấn vào nut post__delete
         this.parentNode.remove();
       };
     }
-  }
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("click", function () {
+        const listItem = checkbox.parentElement;
+        if (checkbox.checked) {
+          listItem.classList.add("completed");
 
-  //   xử lý sự kiện mỗi khi hoàn thành
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-  // lặp qua các checkbox và thêm sự kiện click vào mỗi checkbox
-  checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener("click", function () {
-      // tìm phần tử li chứa checkbox đó
-      const listItem = checkbox.parentElement;
-      // kiểm tra checkbox đã được chọn hay chưa
-      if (checkbox.checked) {
-        // nếu đã được chọn, thêm lớp CSS để đánh dấu chức năng đã hoàn thành
-        listItem.classList.add("completed");
-      } else {
-        // nếu chưa được chọn, xóa lớp CSS để loại bỏ đánh dấu đã hoàn thành
-        listItem.classList.remove("completed");
-      }
+          document.querySelector("#completed").innerHTML += `
+                <li class="post">
+                    <input type="checkbox" id="task-1" checked>
+                    <label for="task-1" id="post__name">${
+                      document.querySelector("#app__add .app__input").value
+                    }</label>
+                    <button class="post__delete">x</button>
+                </li>
+        `;
+          var current_tasks = document.querySelectorAll(".post__delete");
+          for (var i = 0; i < current_tasks.length; i++) {
+            current_tasks[i].onclick = function () {
+              this.parentNode.remove();
+            };
+          }
+        } else {
+          listItem.classList.remove("completed");
+        }
+      });
     });
-  });
+  }
 };
+// ---------------------------
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
